@@ -47,8 +47,31 @@ public class SubtractionSquare {
     */
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Birinci sayı : ");
+        int num1 = scanner.nextInt();
+
+        System.out.print("İkinci sayı : ");
+        int num2 = scanner.nextInt();
+
+        int sonuc = substSquare(num1, num2);
+        System.out.println(sonuc);
+    }
+    public static int getSumOfSquares(int n) {
+
+        int sum = 0;
+        for (int i = 0; i <= n; i++) {
+            sum += i;
+
+        }
+        return sum * sum;
 
     }
+        public static int  substSquare(int num1 , int num2){
+
+            return getSumOfSquares(num1) + getSumOfSquares(num2);
+
+        }
 
 
 

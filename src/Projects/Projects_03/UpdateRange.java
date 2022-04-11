@@ -45,6 +45,24 @@ public class UpdateRange {
 
     public static void main(String[] args) {
 
+        int[] array = {1, 6, 12, 15, 22, 18, 30, 16};
+
+        int min = 10;
+        int max = 20;
+
+        int[] dizi = uRange(array, min, max);
+        System.out.println(Arrays.toString(dizi));
+
+    }
+    public static int[] uRange(int[] arr, int min, int max) {
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > min && arr[i] < max) {
+                arr[i] = -1;
+            }
+
+        }
+        return arr;
 
 
     }

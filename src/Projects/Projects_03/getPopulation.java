@@ -32,17 +32,17 @@ public class getPopulation {
 
     /*
     Method adı populationOfCountry
-    Bu method  String array(countryNames) ,  int array (countryPopulations) ve   String (str) alacak
+    Bu method 1 String array(countryNames) , 1 int array (countryPopulations) ve  1 String (str) alacak
 
-     countryNames : Ülke isimleri
+     countryNames Ülke isimleri
 
-     countryPopulations: Ülke nüfusları
+     countryPopulations Ülke nüfusları
 
       Eğer str Ülke isimleri içeriyorsa  Ülke nüfusunu return et
 
       Ornegin;
 
-        countryNames = {"USA" ,"Mexico" ,"Canada"}
+      countryNames = {"USA" ,"Mexico" ,"Canada"}
 
         countryPopulations = {100000 , 120000 , 130000}
 
@@ -55,6 +55,30 @@ public class getPopulation {
 
      */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ülke adının giriniz: ");
+        String ulkeadi = scanner.nextLine();
 
+        String[] countryNames = {"USA", "Mexico", "Canada"};
+        int[] countryPopulations = {100000, 120000, 130000};
+
+        int sonuc = populationOfCountry(countryNames, countryPopulations, ulkeadi);
+        System.out.println(sonuc);
+    }
+    public static int populationOfCountry(String[] countryNames , int[] countryPopulations , String country){
+
+        int nufus = 0;
+
+        for (int i = 0; i < countryNames.length; i++) {
+
+            if (country.equalsIgnoreCase(countryNames[i])) {
+                nufus = countryPopulations[i];
+                break;
+            } else {
+                nufus = -1;
+            }
+
+        }
+        return nufus;
     }
 }

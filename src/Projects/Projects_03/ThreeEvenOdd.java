@@ -32,8 +32,42 @@ public class ThreeEvenOdd {
 
     */
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Bir sayı dizisi giriniz: ");
+        String str = scanner.nextLine();
 
+        String[] dizistr = str.trim().split("[ ]+");
+        int[] dizi = new int[dizistr.length];
+
+        for (int i = 0; i < dizi.length; i++) {
+            dizi[i] = Integer.parseInt(dizistr[i]);
+        }
+
+
+        boolean sonuc = threeEvenOrOdd(dizi);
+        System.out.println(sonuc);
     }
+    public static boolean threeEvenOrOdd(int[] arr){
 
+        int sayacC = 0;
+        int sayacT = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 2 == 0) {
+                sayacC++;
+            }
+
+            if (arr[i] % 2 == 1) {
+                sayacT++;
+            }
+
+            if (sayacC == 3 || sayacT == 3) {
+                return true;
+
+            }
+
+        }
+        return false;
+    }
 
 }

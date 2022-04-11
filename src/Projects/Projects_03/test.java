@@ -6,11 +6,11 @@ import org.junit.Test;
 public class test {
 
 
- /*
-        @Test
-        public void updateRange1() {
 
-          UpdateRange u1 = new UpdateRange();
+        @Test
+        public void updateRange1(){
+
+            UpdateRange u1 = new UpdateRange();
 
             int[] arr = {1,12,13,14,25,16,47,28,19,3};
             int min = 10 ;
@@ -196,9 +196,8 @@ public class test {
 
             Assert.assertFalse("Expected result is false but your result is " + tt ,tt);
 
-        }*/
-
         }
 
+    }
 
 
