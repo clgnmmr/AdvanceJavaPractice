@@ -52,6 +52,8 @@ public class Kisi {
                 ", yas=" + yas +
                 '}';
     }
+
+
 }
 
 
