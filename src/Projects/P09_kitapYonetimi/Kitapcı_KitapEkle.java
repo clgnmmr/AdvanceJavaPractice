@@ -189,7 +189,7 @@ public class Kitapcı_KitapEkle {
 
             kitapEkle.add(kitap);
 
-            System.out.println("Eklemeyi bitirmek icin 0 a basınız \ndevam etmek icin 1 e basınız .....");
+            System.out.print("Eklemeyi bitirmek icin 0 a basınız \ndevam etmek icin 1 e basınız .....");
 
             int devam=scan.nextInt();
             if (devam ==0){

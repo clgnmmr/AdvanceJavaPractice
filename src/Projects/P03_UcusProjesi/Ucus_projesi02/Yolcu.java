@@ -1,4 +1,4 @@
-package Projects.P03_UcusProjesi;
+package Projects.P03_UcusProjesi.Ucus_projesi02;
 
 public class Yolcu {
 
