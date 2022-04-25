@@ -1,240 +1,163 @@
 package Projects.P11_depoYonetimi;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class Islemler {
-    static Scanner scan = new Scanner(System.in);
-    static int id=1000;
-    static ArrayList<Urunler> urun=new ArrayList<>();
+import java.util.*;
 
 
-
-    public static void menu(){
-System.out.println( "========================== İŞLEMLER =======================\r\n"
-                  + "   ____________________              ____________________   \n"
-                  + "   | 1-URUN TANIMLAMA |              |  2-URUN LİSTELE  |   \n"
-                  + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
-                  + "   ____________________              ____________________   \n"
-                  + "   | 3-URUN GIRISI    |              |  4-URUN RAFA KOY |   \n"
-                  + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
-                  + "   ____________________              ____________________   \n"
-                  + "   | 5-URUN CIKISI    |              |  6-BITIRME       |   \n"
-                  + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯  ");
-
-        System.out.print("islem tercihinizi giriniz : ");
-        int Islem = scan.nextInt();
-
-
-        switch (Islem){
-            case 1:
-                tanimlama();
-                menu();
-                break;
-            case 2:
-                listele();
-                menu();
-                break;
-            case 3:
-                giris();
-                menu();
-                break;
-            case 4:
-                rafaKoy();
-                menu();
-                break;
-            case 5:
-                urunCikis();
-                menu();
-                break;
-            case 6:
-                bitir();
-                break;
-            default:
-                System.out.println("YANLIS SECİM......");
-                menu();
-                break;
+public class Islemler   {
+    static Scanner scan=new Scanner(System.in);
+    static Map<Integer,Urunler> mapList = new HashMap<>();
+    static Integer id=1000;
 
 
 
-        }
+   public static void menu() throws InterruptedException {
+       System.out.println( "========================== İŞLEMLER =======================\r\n"
+               + "   ____________________              ____________________   \n"
+               + "   | 1-URUN TANIMLAMA |              |  2-URUN LİSTELE  |   \n"
+               + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
+               + "   ____________________              ____________________   \n"
+               + "   | 3-URUN GIRISI    |              |  4-URUN RAFA KOY |   \n"
+               + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
+               + "   ____________________              ____________________   \n"
+               + "   | 5-URUN CIKISI    |              |  6-BITIRME       |   \n"
+               + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯  ");
+
+       System.out.print("islem tercihinizi giriniz : ");
+       int Islem = scan.nextInt();
+
+
+       switch (Islem){
+           case 1:
+               urunTanımlama();
+               menu();
+               break;
+           case 2:
+               urunListele();
+               menu();
+               break;
+           case 3:
+               urunGirisi();
+               menu();
+               break;
+           case 4:
+
+               menu();
+               break;
+           case 5:
+
+               menu();
+               break;
+           case 6:
+               cıkıs();
+               break;
+           default:
+               System.out.println("Lutfen gecerli bir karekter giriniz....");
+
+               break;
 
 
 
+       }
 
+   }
 
+    private static void urunGirisi() {
+        System.out.println("<<<<<<<<<<<<<<  URUN GIRISI >>>>>>>>>>>>>>>");
 
-    }
-
-    private static void urunCikis() {
-        System.out.println("   ***      urun icin cıkarma sayfası     ***");
-
-        System.out.print("Cıkısını yapmak  istediginiz urunun ID sini giriniz : ");
+        System.out.print("Eklemek istediginiz urunun ıd'sini giriniz :");
         int arananId=scan.nextInt();
 
-        boolean flag=true;
-        for (Urunler u:urun) {
-            if (u.id==arananId){
-                System.out.print("Cıkarmak istediginiz degeri giriniz : ");
-                int cıkıs=scan.nextInt();
-                    u.miktar-=cıkıs;
-                System.out.println("Urun cıkarıldı....");
-                    if (u.miktar<0){
-                        System.out.println((u.miktar+cıkıs)+" "+u.birim+" "+u.urunIsmi+" var, cıkarıldı. " +
-                                "\n"+Math.abs(u.miktar)+" "+u.birim+" daha veremem.");
-                        u.miktar=0;
+        Set<Integer> keySet= mapList.keySet();
 
+        for (Integer each:keySet){
 
-                    }
-                    flag=false;
-                break;
+            if (each==arananId){
+                System.out.println("Eklemek istediginiz miktarı giriniz ");
+                int miktarı=scan.nextInt();
+                Urunler urunlerSet= mapList.get(each);
+
+                urunlerSet.setMiktar(miktarı+urunlerSet.getMiktar());
 
             }
 
 
 
-        }if (flag){
-            System.out.println("Yerlestirmek istediginiz urun bulunamadı....");
+        }
+
+    }
+
+    private static void urunListele() throws InterruptedException {
+        System.out.println("<<<<<<<<<<<<<<  URUN LISTELEME >>>>>>>>>>>>>>>");
+
+        System.out.printf("%2s     %5s   %10s   %8s    %6s     %3s \n","ID","ISIM","URETICI","MIKTAR","BIRIM","RAF");
+        System.out.println("-------------------------------------------------------");
+
+       Set<Integer> keySet= mapList.keySet();
+
+        for (Integer each:keySet) {
+
+            Urunler urunlerSet= mapList.get(each);
+
+            System.out.printf("%4d    %-5s     %-10s   %3.2f      %-6s   %3s \n",each,urunlerSet.getUrunIsmi(),
+                    urunlerSet.getUretici(),urunlerSet.getMiktar(),urunlerSet.getBirim(),urunlerSet.getRaf());
+
+
+
+
         }
 
 
-
-
-
-
-
-
+   Thread.sleep(3000);
 
 
 
 
     }
 
-    private static void rafaKoy() {
-        System.out.println("   ***      urun icin raf sayfası     ***");
+    private static void urunTanımlama() throws InterruptedException {
 
-        System.out.print("Rafa yerlestirmek istediginiz urunun ID sini giriniz : ");
-        int arananId=scan.nextInt();
-
-        boolean flag=true;
-        for (Urunler u:urun) {
-            if (u.id==arananId){
-                System.out.print("Hangi rafa yerlestirmek istersiniz  : ");
-                u.raf="raf"+scan.next();
-                System.out.println("Urun rafa yerlestirildi....");
-                flag=false;
-                break;
-
-            }
+        System.out.println("<<<<<<<<<<<<<<  URUN TANIMLAMA >>>>>>>>>>>>>>>");
 
 
-
-        }if (flag){
-            System.out.println("Yerlestirmek istediginiz urun bulunamadı....");
-        }
-
-
-
-
-
-
-
-    }
-
-    private static void giris() {
-        System.out.println("   ***      urun icin giris sayfası     ***");
-
-        System.out.print("Giris yapmak istediginiz urunun ID sini giriniz : ");
-        int arananId=scan.nextInt();
-
-        boolean flag=true;
-        for (Urunler u:urun) {
-            if (u.id==arananId){
-                System.out.print("girmek istediginiz değeri yazınız : ");
-                int  giris=scan.nextInt();
-                if (giris>0) {
-                    u.miktar += giris;
-                    System.out.println("miktar eklendi....");
-                }else{
-                    System.out.println("giris yaparken eksi deger girmeyiniz");
-                }
-                flag=false;
-                break;
-
-            }
-
-        }
-        if (flag){
-            System.out.println("Giris yapmak istediginiz urun bulunamadı....");
-        }
-
-
-
-
-
-
-
-
-
-    }
-
-    private static void listele() {
-        System.out.println("______       ________      _____________      ___________      __________       _______");
-        System.out.println("| ID |       | ISIM |      |  URETICI  |      | MIKTAR  |      | BIRIM  |       | RAF |");
-        System.out.println("¯¯¯¯¯¯       ¯¯¯¯¯¯¯¯      ¯¯¯¯¯¯¯¯¯¯¯¯¯      ¯¯¯¯¯¯¯¯¯¯¯      ¯¯¯¯¯¯¯¯¯¯       ¯¯¯¯¯¯¯");
-        for (int i = 0; i <urun.size() ; i++) {
-
-        System.out.printf( "♦%-1d         ♦%-8s       ♦%-8s          ♦%1d            ♦%-8s         ♦%-5s\n"
-                ,urun.get(i).id,urun.get(i).urunIsmi,urun.get(i).uretici,urun.get(i).miktar,urun.get(i).birim,urun.get(i).raf);
-
-
-
-
-        }
-        scan.nextLine();//dummy
-    }
-
-    private static void tanimlama() {
-        System.out.println("   ***      urun icin tanımlama sayfası     ***");
 
        do {
-           System.out.print("Urun ismi giriniz : ");
-           scan.nextLine();//dummy hayalet
-           String urunIsmi=scan.nextLine().toUpperCase();
+           System.out.print("Urunun ismini giriniz : ");
+           String isim=scan.next();
 
-           System.out.print("Urunun uretici ismini giriniz : ");
-           String urunUretici=scan.nextLine().toUpperCase();
+           System.out.print("Urunun ureticisini giriniz : ");
+           String ureticiIsmi=scan.next();
 
-           System.out.print("Urunun birimini giriniz :");
-           String birim=scan.nextLine().toLowerCase();
-           Urunler urunler=new Urunler(id,urunIsmi,urunUretici,birim);
-           urun.add(urunler);
+           System.out.print("Urunun birimini giriniz : ");
+           String birim=scan.next();
+
+           Urunler urun=new Urunler(isim,ureticiIsmi,birim);
+
+           mapList.put(id,urun);
+
            id++;
-           System.out.println("Eklemeyi bitirmek icin 0 a basınız \ndevam etmek icin 1 e basınız .....");
 
-           int devam=scan.nextInt();
-           if (devam ==0){
-               System.out.println("Urun tanımlama bitti.....");
+           System.out.print("Tekrar urun tanımlamak isterseniz  \n 1' e basınız \n yoksa 0'a basınız :");
+           int devamEtme=scan.nextInt();
+           if (devamEtme==0){
+               System.out.println("isleminiz gercekleşti.....");
                break;
            }
 
-       }while (true);
+       }while(true);
 
 
 
 
 
-
-
-
+        Thread.sleep(5000);
 
 
 
 
     }
 
-    private static void bitir() {
-        System.out.println("ISLEM TAMAM....\nYİNE BEKLERİZ");
+    private static void cıkıs() {
+        System.out.println("Cıkış işleminiz gerçekleşti....");
     }
 
 
