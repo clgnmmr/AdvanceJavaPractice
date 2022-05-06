@@ -8,6 +8,60 @@ public class Islemler  implements Methodlar {
     static Map<Integer,Urunler> mapList = new HashMap<>();
     static Integer id=1000;
 
+
+    public static void menu() throws InterruptedException {
+        System.out.println( "========================== İŞLEMLER =======================\r\n"
+                + "   ____________________              ____________________   \n"
+                + "   | 1-URUN TANIMLAMA |              |  2-URUN LİSTELE  |   \n"
+                + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
+                + "   ____________________              ____________________   \n"
+                + "   | 3-URUN GIRISI    |              |  4-URUN RAFA KOY |   \n"
+                + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
+                + "   ____________________              ____________________   \n"
+                + "   | 5-URUN CIKISI    |              |  6-BITIRME       |   \n"
+                + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯  ");
+
+        System.out.print("islem tercihinizi giriniz : ");
+        int Islem = scan.nextInt();
+
+        Methodlar mth=new Islemler();
+
+        switch (Islem){
+            case 1:
+                mth.urunTanımlama();
+                menu();
+                break;
+            case 2:
+                mth.urunListele();
+                menu();
+                break;
+            case 3:
+                mth.urunGirisi();
+                menu();
+                break;
+            case 4:
+                mth. urunRafaYerlestirme();
+                menu();
+                break;
+            case 5:
+                mth .urunCikisi();
+                menu();
+                break;
+            case 6:
+                mth.cıkıs();
+                break;
+            default:
+                System.out.println("Lutfen gecerli bir karekter giriniz....");
+
+                break;
+
+
+
+        }
+
+    }
+
+
     @Override
     public  void urunCikisi() throws InterruptedException {
         System.out.println("<<<<<<<<<<<<<<  URUN CIKISI >>>>>>>>>>>>>>>");
@@ -158,7 +212,7 @@ public class Islemler  implements Methodlar {
 
 
 
-        Thread.sleep(5000);
+        Thread.sleep(3000);
 
 
 
@@ -172,57 +226,6 @@ public class Islemler  implements Methodlar {
 
     }
 
-    public static void menu() throws InterruptedException {
-       System.out.println( "========================== İŞLEMLER =======================\r\n"
-               + "   ____________________              ____________________   \n"
-               + "   | 1-URUN TANIMLAMA |              |  2-URUN LİSTELE  |   \n"
-               + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
-               + "   ____________________              ____________________   \n"
-               + "   | 3-URUN GIRISI    |              |  4-URUN RAFA KOY |   \n"
-               + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯   \n"
-               + "   ____________________              ____________________   \n"
-               + "   | 5-URUN CIKISI    |              |  6-BITIRME       |   \n"
-               + "   ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯  ");
-
-       System.out.print("islem tercihinizi giriniz : ");
-       int Islem = scan.nextInt();
-
-      Methodlar mth=new Islemler();
-
-       switch (Islem){
-           case 1:
-             mth.urunTanımlama();
-               menu();
-               break;
-           case 2:
-             mth.urunListele();
-               menu();
-               break;
-           case 3:
-             mth.urunGirisi();
-               menu();
-               break;
-           case 4:
-              mth. urunRafaYerlestirme();
-               menu();
-               break;
-           case 5:
-              mth .urunCikisi();
-               menu();
-               break;
-           case 6:
-            mth.cıkıs();
-               break;
-           default:
-               System.out.println("Lutfen gecerli bir karekter giriniz....");
-
-               break;
-
-
-
-       }
-
-   }
 
    /*
 
